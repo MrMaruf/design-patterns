@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc index.ts && node index.js"
+    "clean": "del index.js && del /s /q src\\*.js",
+    "dev": "tsc index.ts && node index.js && npm run clean"
   },
   "author": "",
   "license": "ISC",
