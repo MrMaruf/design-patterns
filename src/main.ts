@@ -62,7 +62,7 @@ function readFile(filePath: string): FileRepresentation {
         const baseName = basename(filePath);
         const extension = extname(filePath);
         const fileRepresentation = new FileRepresentation({
-            name: baseName,
+            name: baseName.split(".")[0],
             relativePath: filePath,
             stats: stats,
             extension,
