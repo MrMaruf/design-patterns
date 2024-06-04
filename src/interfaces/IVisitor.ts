@@ -3,6 +3,6 @@ import { FileRepresentation } from "../file-representation";
 import { IVisitable } from "./IVisited";
 
 export interface IVisitor {
-    visitFile(file: FileRepresentation)
-    visitDirectory(directory: DirectoryRepresentation)
+    visitFile(file: FileRepresentation): void;
+    visitDirectory(directory: DirectoryRepresentation): void;
 }

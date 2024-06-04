@@ -8,7 +8,7 @@ export class DirectoryRepresentation implements IVisitable {
     public name: string;
     public relativePath: string;
     public contents: (FileRepresentation | DirectoryRepresentation)[];
-    public absolutePath?: string;
+    public absolutePath: string;
 
     constructor(properties: Omit<DirectoryRepresentation, "accept">) {
         if (typeof properties.stats !== "object" || properties.stats === null) {
@@ -27,11 +27,8 @@ export class DirectoryRepresentation implements IVisitable {
             throw new TypeError("extension is not a string");
         }
         this.contents = properties.contents;
-        if (
-            properties.absolutePath !== undefined &&
-            typeof properties.absolutePath !== "string"
-        ) {
-            throw new TypeError("fullPath provided is not a string");
+        if (typeof properties.absolutePath !== "string") {
+            throw new TypeError("absolutePath is not a string");
         }
         this.absolutePath = properties.absolutePath;
     }

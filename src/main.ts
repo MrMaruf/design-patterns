@@ -8,9 +8,12 @@ import {
 import { basename, dirname, extname, resolve } from "node:path";
 import { DirectoryRepresentation } from "./directory-representation";
 import { FileRepresentation } from "./file-representation";
+import { LoggerVisitor } from "./LoggerVisitor";
 export function main() {
     const srcPath = "./src";
-    readDir(srcPath);
+    const srcDir = readDir(srcPath);
+    const loggerVisitor = new LoggerVisitor();
+    srcDir.accept(loggerVisitor);
 }
 
 console.log("test");
