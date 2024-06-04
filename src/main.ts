@@ -9,11 +9,15 @@ import { basename, dirname, extname, resolve } from "node:path";
 import { DirectoryRepresentation } from "./directory-representation";
 import { FileRepresentation } from "./file-representation";
 import { LoggerVisitor } from "./LoggerVisitor";
+import { SizeCalculationVisitor } from "./SizeCalculationVisitor";
 export function main() {
     const srcPath = "./src";
     const srcDir = readDir(srcPath);
     const loggerVisitor = new LoggerVisitor();
     srcDir.accept(loggerVisitor);
+    const sizeCalculationVisitor = new SizeCalculationVisitor()
+    srcDir.accept(sizeCalculationVisitor);
+    console.log("Directory size: ", sizeCalculationVisitor.getSize("KB"));
 }
 
 console.log("test");
