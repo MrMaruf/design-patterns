@@ -1,6 +1,6 @@
 import { Stats } from "node:fs";
-import { IVisitable } from "./interfaces/IVisited";
-import { IVisitor } from "./interfaces/IVisitor";
+import { IVisitable } from "../interfaces/IVisited";
+import { IVisitor } from "../interfaces/IVisitor";
 import { FileRepresentation } from "./file-representation";
 
 export class DirectoryRepresentation implements IVisitable {

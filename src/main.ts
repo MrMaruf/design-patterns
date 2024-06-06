@@ -1,15 +1,13 @@
 import {
-    existsSync,
-    readFileSync,
     readdirSync,
     statSync,
-    accessSync,
 } from "node:fs";
-import { basename, dirname, extname, resolve } from "node:path";
-import { DirectoryRepresentation } from "./directory-representation";
-import { FileRepresentation } from "./file-representation";
-import { LoggerVisitor } from "./logger-visitor";
-import { SizeCalculationVisitor } from "./size-calculation-visitor";
+import { basename, extname, resolve } from "node:path";
+import { DirectoryRepresentation } from "./models/directory-representation";
+import { FileRepresentation } from "./models/file-representation";
+import { LoggerVisitor } from "./visitors/logger-visitor";
+import { SizeCalculationVisitor } from "./visitors/size-calculation-visitor";
+
 export function main() {
     const srcPath = "./src";
     const srcDir = readDir(srcPath);

@@ -1,6 +1,6 @@
-import { DirectoryRepresentation } from "./directory-representation";
-import { FileRepresentation } from "./file-representation";
-import { IVisitor } from "./interfaces/IVisitor";
+import { DirectoryRepresentation } from "../models/directory-representation";
+import { FileRepresentation } from "../models/file-representation"; 
+import { IVisitor } from "../interfaces/IVisitor";
 
 export class LoggerVisitor implements IVisitor {
     visitFile(file: FileRepresentation) {
