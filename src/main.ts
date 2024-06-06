@@ -9,7 +9,7 @@ import { basename, dirname, extname, resolve } from "node:path";
 import { DirectoryRepresentation } from "./directory-representation";
 import { FileRepresentation } from "./file-representation";
 import { LoggerVisitor } from "./LoggerVisitor";
-import { SizeCalculationVisitor } from "./SizeCalculationVisitor";
+import { SizeCalculationVisitor } from "./size-calculation-visitor";
 export function main() {
     const srcPath = "./src";
     const srcDir = readDir(srcPath);
