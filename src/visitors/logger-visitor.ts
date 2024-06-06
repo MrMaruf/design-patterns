@@ -5,26 +5,34 @@ import { ImageFile } from "../models/image-file.js";
 import terminalImage from "terminal-image";
 import { SoundFile } from "../models/sound-file.js";
 
-export class LoggerVisitor implements IVisitor {
+export class ConsoleLoggerVisitor implements IVisitor {
     async visitSoundFile(sound: SoundFile): Promise<void> {
-        
+        const fileName = sound.name + sound.extension;
+        const separators = this.calculateDepthSeparator(sound);
+        console.log(separators, "-🎼", fileName);
     }
 
-
     async visitImageFile(image: ImageFile) {
-        console.log(await terminalImage.file('unicorn.jpg'));
+        const fileName = image.name + image.extension;
+        const separators = this.calculateDepthSeparator(image);
+        console.log(separators, "-📷", fileName, "(printed below)");
+
+        const content = await terminalImage.file(image.absolutePath);
+        console.log(content);
     }
 
     async visitFile(file: FileRepresentation) {
         const fileName = file.name + file.extension;
         const separators = this.calculateDepthSeparator(file);
-        console.log(separators, "--", fileName);
+        console.log(separators, "- ", fileName);
     }
     async visitDirectory(directory: DirectoryRepresentation) {
         const fileName = directory.name;
         const separators = this.calculateDepthSeparator(directory);
         console.log(separators, "|", fileName);
-        directory.contents.forEach((object) => object.accept(this));
+        await directory.contents.forEach(
+            async (object) => await object.accept(this)
+        );
     }
 
     calculateDepthSeparator(

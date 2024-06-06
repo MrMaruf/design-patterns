@@ -5,13 +5,15 @@ import {
 import { basename, extname, resolve } from "node:path";
 import { DirectoryRepresentation } from "./models/directory-representation.js";
 import { FileRepresentation } from "./models/file-representation.js";
-import { LoggerVisitor } from "./visitors/logger-visitor.js";
+import { ConsoleLoggerVisitor } from "./visitors/logger-visitor.js";
 import { SizeCalculationVisitor } from "./visitors/size-calculation-visitor.js";
+import { ImageFile } from "./models/image-file.js";
+import { SoundFile } from "./models/sound-file.js";
 
 export async function main() {
     const srcPath = "./src";
     const srcDir = readDir(srcPath);
-    const loggerVisitor = new LoggerVisitor();
+    const loggerVisitor = new ConsoleLoggerVisitor();
     await srcDir.accept(loggerVisitor);
     const sizeCalculationVisitor = new SizeCalculationVisitor()
     await srcDir.accept(sizeCalculationVisitor);
@@ -63,13 +65,25 @@ function readFile(filePath: string): FileRepresentation {
         const absolutePath = resolve(filePath);
         const baseName = basename(filePath);
         const extension = extname(filePath);
-        const fileRepresentation = new FileRepresentation({
+        const fileObject = {
             name: baseName.split(".")[0],
             relativePath: filePath,
             stats: stats,
             extension,
             absolutePath,
-        });
+        }
+        let fileRepresentation: FileRepresentation;
+        switch (extension) {
+            case ".wav": {
+                return new SoundFile(fileObject);
+            }
+            case ".jpg": {
+                return new ImageFile(fileObject);
+            }
+            default: {
+                return new FileRepresentation(fileObject);
+            }
+        }
         return fileRepresentation;
     } catch (error) {
         console.error("File reading failed");
