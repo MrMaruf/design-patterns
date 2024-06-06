@@ -1,14 +1,26 @@
-import { DirectoryRepresentation } from "../models/directory-representation";
-import { FileRepresentation } from "../models/file-representation"; 
-import { IVisitor } from "../interfaces/IVisitor";
+import { DirectoryRepresentation } from "../models/directory-representation.js";
+import { FileRepresentation } from "../models/file-representation.js";
+import { IVisitor } from "../interfaces/IVisitor.js";
+import { ImageFile } from "../models/image-file.js";
+import terminalImage from "terminal-image";
+import { SoundFile } from "../models/sound-file.js";
 
 export class LoggerVisitor implements IVisitor {
-    visitFile(file: FileRepresentation) {
+    async visitSoundFile(sound: SoundFile): Promise<void> {
+        
+    }
+
+
+    async visitImageFile(image: ImageFile) {
+        console.log(await terminalImage.file('unicorn.jpg'));
+    }
+
+    async visitFile(file: FileRepresentation) {
         const fileName = file.name + file.extension;
         const separators = this.calculateDepthSeparator(file);
         console.log(separators, "--", fileName);
     }
-    visitDirectory(directory: DirectoryRepresentation) {
+    async visitDirectory(directory: DirectoryRepresentation) {
         const fileName = directory.name;
         const separators = this.calculateDepthSeparator(directory);
         console.log(separators, "|", fileName);

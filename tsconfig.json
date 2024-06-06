@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "strict": true
+        "module": "NodeNext",
+        "strict": true,
+        "outDir": "./dist",
+        "moduleResolution": "NodeNext"
     },
     "exclude": [
         "node_modules"

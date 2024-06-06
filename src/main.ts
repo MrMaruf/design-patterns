@@ -3,18 +3,18 @@ import {
     statSync,
 } from "node:fs";
 import { basename, extname, resolve } from "node:path";
-import { DirectoryRepresentation } from "./models/directory-representation";
-import { FileRepresentation } from "./models/file-representation";
-import { LoggerVisitor } from "./visitors/logger-visitor";
-import { SizeCalculationVisitor } from "./visitors/size-calculation-visitor";
+import { DirectoryRepresentation } from "./models/directory-representation.js";
+import { FileRepresentation } from "./models/file-representation.js";
+import { LoggerVisitor } from "./visitors/logger-visitor.js";
+import { SizeCalculationVisitor } from "./visitors/size-calculation-visitor.js";
 
-export function main() {
+export async function main() {
     const srcPath = "./src";
     const srcDir = readDir(srcPath);
     const loggerVisitor = new LoggerVisitor();
-    srcDir.accept(loggerVisitor);
+    await srcDir.accept(loggerVisitor);
     const sizeCalculationVisitor = new SizeCalculationVisitor()
-    srcDir.accept(sizeCalculationVisitor);
+    await srcDir.accept(sizeCalculationVisitor);
     console.log("Directory size: ", sizeCalculationVisitor.getSize("KB"));
 }
 

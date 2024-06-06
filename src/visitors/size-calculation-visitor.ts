@@ -1,8 +1,19 @@
-import { DirectoryRepresentation } from "../models/directory-representation";
-import { FileRepresentation } from "../models/file-representation";
-import { IVisitor } from "../interfaces/IVisitor";
+import { DirectoryRepresentation } from "../models/directory-representation.js";
+import { FileRepresentation } from "../models/file-representation.js";
+import { IVisitor } from "../interfaces/IVisitor.js";
+import { ImageFile } from "../models/image-file.js";
+import { SoundFile } from "../models/sound-file.js";
 
 export class SizeCalculationVisitor implements IVisitor {
+    
+    async visitImageFile(image: ImageFile): Promise<void> {
+        await this.visitFile(image);
+    }
+
+    async visitSoundFile(sound: SoundFile): Promise<void> {
+        await this.visitFile(sound);
+    }
+
     private _size: number = 0;
 
     public get size(): number {
@@ -21,28 +32,28 @@ export class SizeCalculationVisitor implements IVisitor {
         this._size = 0;
     }
 
-    visitDirectory(directory: DirectoryRepresentation): void {
+    async visitDirectory(directory: DirectoryRepresentation) {
         const dirSize = directory.stats.size;
         this._size += dirSize;
-        directory.contents.forEach(object=>object.accept(this));
+        directory.contents.forEach((object) => object.accept(this));
     }
 
-    visitFile(file: FileRepresentation): void {
+    async visitFile(file: FileRepresentation) {
         const fileSize = file.stats.size;
-        this._size += fileSize
+        this._size += fileSize;
     }
 
-    getSize(sizeMeasure: "KB" | 'MB'): string {
+    getSize(sizeMeasure: "KB" | "MB"): string {
         switch (sizeMeasure) {
             case "KB": {
                 const sizeInKB = this._size / 1024;
                 const cleanSize = sizeInKB.toFixed(2);
-                return `${cleanSize} ${sizeMeasure}`
+                return `${cleanSize} ${sizeMeasure}`;
             }
             case "MB": {
                 const sizeInKB = this._size / 1024 / 1024;
                 const cleanSize = sizeInKB.toFixed(2);
-                return `${cleanSize} ${sizeMeasure}`
+                return `${cleanSize} ${sizeMeasure}`;
             }
         }
     }

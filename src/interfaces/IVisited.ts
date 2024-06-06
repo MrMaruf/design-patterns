@@ -1,5 +1,5 @@
-import { IVisitor } from "./IVisitor";
+import { IVisitor } from "./IVisitor.js";
 
 export interface IVisitable {
-    accept(visitor: IVisitor);
+    accept(visitor: IVisitor): Promise<void>;
 }

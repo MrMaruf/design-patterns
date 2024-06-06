@@ -2,9 +2,10 @@
   "name": "design-patterns",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "clean": "del index.js && del /s /q src\\*.js",
-    "dev": "tsc index.ts && node index.js && npm run clean"
+    "clean": "del /s /q dist",
+    "dev": "tsc --project tsconfig.json  && node dist/index.js && npm run clean"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +13,9 @@
   "devDependencies": {
     "@types/node": "^20.14.0",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "audic": "^3.0.2",
+    "terminal-image": "^2.0.0"
   }
 }

@@ -1,6 +1,6 @@
 import { Stats } from "fs";
-import { IVisitable } from "./interfaces/IVisited";
-import { IVisitor } from "./interfaces/IVisitor";
+import { IVisitable } from "../interfaces/IVisited.js";
+import { IVisitor } from "../interfaces/IVisitor.js";
 
 export class FileRepresentation implements IVisitable {
     public stats: Stats;
@@ -32,7 +32,7 @@ export class FileRepresentation implements IVisitable {
         this.absolutePath = properties.absolutePath;
     }
 
-    accept(visitor: IVisitor) {
+    async accept(visitor: IVisitor) {
         visitor.visitFile(this);
     }
 }

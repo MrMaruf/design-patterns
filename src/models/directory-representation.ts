@@ -1,7 +1,7 @@
 import { Stats } from "node:fs";
-import { IVisitable } from "../interfaces/IVisited";
-import { IVisitor } from "../interfaces/IVisitor";
-import { FileRepresentation } from "./file-representation";
+import { IVisitable } from "../interfaces/IVisited.js";
+import { IVisitor } from "../interfaces/IVisitor.js";
+import { FileRepresentation } from "./file-representation.js";
 
 export class DirectoryRepresentation implements IVisitable {
     public stats: Stats;
@@ -33,7 +33,7 @@ export class DirectoryRepresentation implements IVisitable {
         this.absolutePath = properties.absolutePath;
     }
 
-    accept(visitor: IVisitor) {
+    async accept(visitor: IVisitor) {
         visitor.visitDirectory(this);
     }
 }
