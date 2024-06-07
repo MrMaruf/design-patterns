@@ -15,7 +15,6 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "audic": "^3.0.2",
     "terminal-image": "^2.0.0"
   }
 }
