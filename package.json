@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "clean": "del /s /q dist",
-    "dev": "tsc --project tsconfig.json  && node dist/index.js && npm run clean"
+	"dev:visitor": "npm run dev -- visitor",
+    "dev": "tsc --project tsconfig.json  && node dist/index.js",
+	"postdev":"npm run clean"
   },
   "author": "",
   "license": "ISC",

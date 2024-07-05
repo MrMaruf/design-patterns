@@ -2,6 +2,8 @@ import { main as visitorMain } from "./visitor/main.js";
 
 const argument = process.argv[2];
 
+console.info("Passed argument: ", argument)
+
 switch (argument) {
 	case "visitor": {
 		visitorMain();
