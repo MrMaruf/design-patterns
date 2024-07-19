@@ -6,6 +6,7 @@
     "scripts": {
         "clean": "del /s /q dist",
         "dev:visitor": "npm run dev -- visitor",
+        "dev:iterator": "npm run dev -- iterator",
         "dev": "tsc --project tsconfig.json  && node dist/index.js",
         "postdev": "npm run clean"
     },
