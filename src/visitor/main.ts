@@ -72,7 +72,6 @@ function readFile(filePath: string): FileRepresentation {
             extension,
             absolutePath,
         }
-        let fileRepresentation: FileRepresentation;
         switch (extension) {
             case ".wav": {
                 return new SoundFile(fileObject);
@@ -84,7 +83,6 @@ function readFile(filePath: string): FileRepresentation {
                 return new FileRepresentation(fileObject);
             }
         }
-        return fileRepresentation;
     } catch (error) {
         console.error("File reading failed");
         throw error;
