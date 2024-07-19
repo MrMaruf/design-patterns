@@ -1,22 +1,22 @@
 {
-  "name": "design-patterns",
-  "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "clean": "del /s /q dist",
-	"dev:visitor": "npm run dev -- visitor",
-    "dev": "tsc --project tsconfig.json  && node dist/index.js",
-	"postdev":"npm run clean"
-  },
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@types/node": "^20.14.0",
-    "typescript": "^5.4.5"
-  },
-  "dependencies": {
-    "terminal-image": "^2.0.0"
-  }
+    "name": "design-patterns",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "clean": "del /s /q dist",
+        "dev:visitor": "npm run dev -- visitor",
+        "dev": "tsc --project tsconfig.json  && node dist/index.js",
+        "postdev": "npm run clean"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "@types/node": "^20.14.0",
+        "typescript": "^5.4.5"
+    },
+    "dependencies": {
+        "terminal-image": "^2.0.0"
+    }
 }
