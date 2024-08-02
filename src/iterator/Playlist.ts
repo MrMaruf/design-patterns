@@ -1,4 +1,6 @@
 import { ForwardIterator } from "./iterators/forward-iterator.js";
+import { ReverseIterator } from "./iterators/reverse-iterator.js";
+import { ShuffleIterator } from "./iterators/shuffle-iterator.js";
 import { Song } from "./song.js";
 
 export class Playlist {
@@ -14,5 +16,13 @@ export class Playlist {
 
     public getForwardIterator():ForwardIterator {
         return new ForwardIterator(this.songs);
+    }
+
+    public getReverseIterator(): ReverseIterator {
+        return new ReverseIterator(this.songs);
+    }
+
+    public getShuffleIterator(): ShuffleIterator {
+        return new ShuffleIterator(this.songs);
     }
 }
