@@ -1,5 +1,6 @@
 import { main as visitorMain } from "./visitor/main.js";
 import { main as iteratorMain } from "./iterator/main.js";
+import {main as chainOfResponsibilityMain} from "./chain-of-responsibility/main.js"
 
 const argument = process.argv[2];
 
@@ -12,6 +13,10 @@ switch (argument) {
     }
     case "iterator": {
         iteratorMain();
+        break;
+    }
+    case "chain-of-responsibility": {
+        chainOfResponsibilityMain();
         break;
     }
     case undefined: {
