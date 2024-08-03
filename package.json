@@ -7,6 +7,7 @@
         "clean": "del /s /q dist",
         "dev:visitor": "npm run dev -- visitor",
         "dev:iterator": "npm run dev -- iterator",
+        "dev:cor:traditional": "npm run dev:cor -- traditional",
         "dev:chain-of-responsibility": "npm run dev:cor",
         "dev:cor": "npm run dev -- chain-of-responsibility",
         "dev": "tsc --project tsconfig.json  && node dist/index.js",
