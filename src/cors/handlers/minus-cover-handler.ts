@@ -9,6 +9,7 @@ export class MinusCoverHandler {
 
 	public handle(expression: string): number {
 		const newExpression = expression.replaceAll(/(?<=\d)-(?=\d)/g, "+-");
+		console.log("MinusCoverHandler: ", newExpression);
 		return this.handleNext(newExpression);
 	}
 

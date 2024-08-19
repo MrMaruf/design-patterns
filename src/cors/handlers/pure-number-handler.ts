@@ -9,6 +9,7 @@ export class PureNumberHandler implements IMathHandler {
 
 	public handle(expression: string): number {
 		const parsedExpression = Number(expression.trim());
+		console.log("PureNumberHandler expression: ", expression);
 		if (isNaN(parsedExpression)) {
 			throw new Error("Expression is not a number.");
 		}

@@ -16,6 +16,7 @@ export class ExponentialHandler implements IMathHandler {
 	public handle(expression: string): number {
 		if (expression.includes('^')) {
 			const newExpression = this.handleExponential(expression);
+			console.log("ExponentialHandler: ", newExpression);
 			return this.handleNext(newExpression);
 		}
 
@@ -32,12 +33,18 @@ export class ExponentialHandler implements IMathHandler {
 	private handleExponential(expression: string): string {
 		let newExpression = expression;
 		while (newExpression.includes('^')) {
-			const [base, exponent] = expression.split('^');
+			console.log("Pre newExpression: ", newExpression);
+			const [base, exponent] = newExpression.split('^');
+			console.log("base: ", base);
+			console.log("exponent: ", exponent);
 			const baseNumber = StringMethods.getLastNumberInString(base);
+			console.log("baseNumber: ", baseNumber);
 			const exponentNumber = StringMethods.getFirstNumberInString(exponent);
+			console.log("exponentNumber: ", exponentNumber);
 			const newResult = Math.pow(baseNumber, exponentNumber);
-			const previousStringPiece = `${base}^${exponent}`;
+			const previousStringPiece = `${baseNumber}^${exponentNumber}`;
 			newExpression = newExpression.replace(previousStringPiece, newResult.toString());
+			console.log("newExpression: ", newExpression);
 		}
 		return newExpression;
 	}

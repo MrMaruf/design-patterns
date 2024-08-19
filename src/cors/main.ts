@@ -1,21 +1,31 @@
+import { AddHandler } from "./handlers/add-handler.js";
 import { ExponentialHandler } from "./handlers/exponential-handler.js";
 import { MinusCoverHandler } from "./handlers/minus-cover-handler.js";
+import { MultiplicationHandler } from "./handlers/multiplication-handler.js";
 import { PureNumberHandler } from "./handlers/pure-number-handler.js";
 
 
 const exponentialHandler = new ExponentialHandler();
 const pureNumberHandler = new PureNumberHandler();
 const minusCoverHandler = new MinusCoverHandler();
+const addHandler = new AddHandler();
+const multiplicationHandler = new MultiplicationHandler();
 
 minusCoverHandler.setNext(exponentialHandler);
-exponentialHandler.setNext(pureNumberHandler);
+exponentialHandler.setNext(multiplicationHandler);
+multiplicationHandler.setNext(addHandler);
+addHandler.setNext(pureNumberHandler);
+
 
 const examples = [
 	"2^3",
 	"125",
-	"-2^3",
+	"-2^3+5*14^2",
 	"2^-3",
-	"-15"
+	"-15",
+	"2+3",
+	"2+3*4",
+	"2+3*4-5",
 ];
 
 for (const example of examples) {
