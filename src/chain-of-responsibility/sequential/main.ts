@@ -27,8 +27,9 @@ const examples = [
 	"2+3*4",
 	"2+3*4-5",
 ];
-
-for (const example of examples) {
-	const result = exponentialHandler.handle(example);
-	console.log(`Result for ${example} = ${result}`);
+export function main(): void {
+	for (const example of examples) {
+		const result = exponentialHandler.handle(example);
+		console.log(`Result for ${example} = ${result}`);
+	}
 }
