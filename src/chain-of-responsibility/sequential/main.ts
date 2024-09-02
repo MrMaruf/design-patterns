@@ -27,9 +27,21 @@ const examples = [
 	"2+3*4",
 	"2+3*4-5",
 ];
+
+const expectedResults = [
+	8,
+	125,
+	-1966,
+	0.125,
+	-15,
+	5,
+	14,
+	7,
+];
+
 export function main(): void {
 	for (const example of examples) {
-		const result = exponentialHandler.handle(example);
-		console.log(`Result for ${example} = ${result}`);
+		const result = minusCoverHandler.handle(example);
+		console.log(`Result for ${example} = ${result}; Expected: ${expectedResults[examples.indexOf(example)]}`);
 	}
 }
